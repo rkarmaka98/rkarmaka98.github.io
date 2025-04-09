@@ -2,92 +2,175 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <meta content="Rajarshi Karmakar Portfolio - Computer Vision, AI, Software Development" name="description">
+    <meta name="google" content="notranslate" />
+    <meta content="Rajarshi Karmakar" name="author">
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Favicon - Add your own favicon links here if you have them -->
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-icon-180x180.png">
+    <link href="./assets/favicon.ico" rel="icon"> -->
+
     <title>Rajarshi Karmakar - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:900|Roboto+Mono:300,400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="minimal dark-mode">
+    <div id="site-border-left"></div>
+    <div id="site-border-right"></div>
+    <div id="site-border-top"></div>
+    <div id="site-border-bottom"></div>
+
+    <!-- Header -->
     <header>
-        <h1>Rajarshi Karmakar</h1>
-        <p>MEng Computer Vision and AI Student</p>
-        <p>Limerick, Ireland <a href="mailto:rkarmaka98@gmail.com">rkarmaka98@gmail.com</a></p>
-        <p><a href="https://www.linkedin.com/in/rkarmakar98/">LinkedIn</a> • <a href="https://github.com/rkarmaka98">GitHub</a></p>
+        <nav class="navbar navbar-fixed-top navbar-inverse">
+            <div class="container">
+                <!-- Mobile Toggle Button (optional, requires JS for functionality) -->
+                <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button> -->
+
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <!-- Basic Nav Links - Adjust hrefs as needed -->
+                    <ul class="nav navbar-nav ">
+                        <li><a href="#profile" title="">01 : Profile</a></li>
+                        <li><a href="#projects" title="">02 : Projects</a></li>
+                        <li><a href="#articles" title="">03 : Articles</a></li>
+                        <!-- Add other links if needed -->
+                    </ul>
+                    <!-- Theme Toggle Button - Positioned separately -->
+                    <div class="navbar-right-container">
+                        <button id="theme-toggle" aria-label="Toggle theme"></button>
+                    </div>
+                </div> 
+            </div>
+        </nav>
     </header>
-    <section>
-        <h2>Profile</h2>
-        <p>4 years of working experience as a software developer in the industry. Worked in a wide range of responsibilities from Dev-ops to Backend in IT. Looking for Computer Vision or Deep Learning/AI Engineer roles in the industry. Preferred application areas are Self Driving Cars, Robotics, Scientific Research.</p>
-    </section>
-    <section>
-        <h2>Personal Projects</h2>
-        <div class="projects">
-            <div class="project">
-                <h3>Image Filter App</h3>
-                <video controls class="project-video" style="width: 100%;height: auto;">
-                    <source src="https://github.com/user-attachments/assets/7971fb5e-eca2-4373-b257-77fc56e1d810" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <p>A web application that applies various filters to images using JavaScript and HTML5 Canvas. Built as a fun project to explore image processing techniques in the browser.</p>
-                <p><a href="https://github.com/rkarmaka98/Image-filter-app">View on GitHub</a></p>
-            </div>
-            <div class="project">
-                <h3>Handwritten Digit Classifier</h3>
-                <video controls class="project-video" style="width: 100%;height: auto;">
-                    <source src="https://github.com/user-attachments/assets/fca438b9-1fd8-463f-a18e-d0a619d36e99" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <p>A machine learning project that classifies handwritten digits using a convolutional neural network (CNN). The project was created to understand the fundamentals of computer vision and deep learning.</p>
-                <p><a href="https://github.com/rkarmaka98/Handwritten-digit-classifier">View on GitHub</a></p>
-            </div>
-            <div class="project">
-                <h3>Facial Emotional Sentiment Detection</h3>
-                <video controls class="project-video" style="width: 100%;height: auto;">
-                    <source src="https://github.com/user-attachments/assets/75b7386b-3335-4236-9e52-53ff4f92a3cb" type="video/mp4">  
-                    Your browser does not support the video tag.
-                </video>
-                <p>This project is a real-time emotion detection system that uses Support Vector Classifier (SVC) to classify human emotions based on facial landmarks. The system captures live video using a webcam, detects faces using `dlib`, extracts geometric features, and predicts the user's emotion. The results are displayed in real-time on a web interface.</p>
-                <p><a href="https://github.com/rkarmaka98/Emotion-Detection">View on GitHub</a></p>
-            </div>
-            <div class="project">
-                <h3>Self Driving Simulation</h3>
-                <video controls class="project-video" style="width: 100%;height: auto;">
-                    <source src="https://github.com/user-attachments/assets/7146335e-90e0-40cf-b844-18543974753b" type="video/mp4">  
-                    Your browser does not support the video tag.
-                </video>
-                <p>The Self-Driving Car Simulation project aims to create an environment where an agent learns to drive a car autonomously. The agent receives visual inputs from the environment, processes them through a Deep Q-Network (DQN), and learns optimal actions to maximize its reward, which is primarily based on avoiding collisions and successfully navigating through lanes.</p>
-                <p><a href="https://github.com/rkarmaka98/SelfDrivingCarSimulation">View on GitHub</a></p>
-            </div>
-            <div class="project">
-                <h3>Superpoint using Realsense</h3>
-                <video controls class="project-video" style="width: 100%;height: auto;">
-                    <source src="https://github.com/user-attachments/assets/e9d36e4b-4375-4d3a-825e-e45968fc9e78" type="video/mp4">  
-                    Your browser does not support the video tag.https://github.com/rkarmaka98/rkarmaka98.github.io/blob/main/index.html
-                </video>
-                <p>SuperPoint is a state-of-the-art keypoint detection and descriptor extraction algorithm. It uses a deep convolutional neural network to simultaneously detect keypoints and compute their descriptors. The algorithm is designed to be robust to changes in lighting, scale, and viewpoint, making it suitable for real-world applications such as SLAM, structure-from-motion, and augmented reality.</p>
-                <p><a href="https://github.com/rkarmaka98/superpoint_realsense">View on GitHub</a></p>
-            </div>
-            <div class="project">
-                <h3>SuperGlue using Realsense</h3>
-                <video controls class="project-video" style="width: 100%;height: auto;">
-                    <source src="https://github.com/user-attachments/assets/cdb636bb-9483-4683-9d57-81e889b66bae" type="video/mp4">  
-                    Your browser does not support the video tag.https://github.com/rkarmaka98/rkarmaka98.github.io/blob/main/index.html
-                </video>
-                <p>SuperGlue is a deep learning-based feature matching algorithm designed for accurate and robust keypoint matching between images. It builds upon SuperPoint, a self-supervised keypoint detector, and employs a graph neural network (GNN) to establish correspondences by considering spatial relationships and contextual information between keypoints.</p>
-                <p><a href="https://github.com/rkarmaka98/SuperGlue_realsense">View on GitHub</a></p>
+
+    <!-- Main Content Area -->
+    <div class="main-content-wrapper">
+        <!-- Hero Section (Replaces old header content) -->
+        <div class="hero-container section-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="hero-content">
+                            <h1>Rajarshi <span id="typed-lastname"></span></h1>
+                            <p>MEng Computer Vision and AI Student</p>
+                            <p>Software Developer and AI Engineer</p>
+                            <p>Limerick, Ireland | <a href="mailto:rkarmaka98@gmail.com">rkarmaka98@gmail.com</a></p>
+                            <p>
+                                <a href="https://www.linkedin.com/in/rkarmakar98/" class="btn btn-default btn-lg">LinkedIn</a> 
+                                <a href="https://github.com/rkarmaka98" class="btn btn-default btn-lg">GitHub</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
-    <section>
-        <h2>Favourite Articles & Blogs</h2>
-        <ul>
-            <li><a href="https://sebastianraschka.com/blog/2023/self-attention-from-scratch.html">Self-Attention from Scratch</a></li>
-            <li><a href="https://poloclub.github.io/cnn-explainer/">CNN Visualizer</a></li>
-            <li><a href="https://poloclub.github.io/transformer-explainer/">Transformer Explainer</a></li>
-            <li><a href="https://poloclub.github.io/ganlab/">GAN Visualizer</a></li>
-            <li><a href="https://poloclub.github.io/diffusion-explainer/">Diffusion Explainer</a></li>
-            <li><a href="https://poloclub.github.io/wizmap/">Embedding Mapping</a></li>
-        </ul>
-    </section>
+
+        <div class="container main-sections-container">
+            <section id="profile" class="text-container section-container">
+                <h2>Profile</h2>
+                <p>4 years of working experience as a software developer in the industry. Worked in a wide range of responsibilities from Dev-ops to Backend in IT. Looking for Computer Vision or Deep Learning/AI Engineer roles in the industry. Preferred application areas are Self Driving Cars, Robotics, Scientific Research.</p>
+            </section>
+
+            <section id="projects" class="section-container">
+                <h2>Personal Projects</h2>
+                <div class="projects">
+                    <div class="project">
+                        <video controls class="project-video" style="width: 100%;height: auto;">
+                            <source src="https://github.com/user-attachments/assets/7971fb5e-eca2-4373-b257-77fc56e1d810" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="project-content">
+                            <h3>Image Filter App</h3>
+                            <p>A web application that applies various filters to images using JavaScript and HTML5 Canvas. Built as a fun project to explore image processing techniques in the browser.</p>
+                            <p><a href="https://github.com/rkarmaka98/Image-filter-app">View on GitHub</a></p>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <video controls class="project-video" style="width: 100%;height: auto;">
+                            <source src="https://github.com/user-attachments/assets/fca438b9-1fd8-463f-a18e-d0a619d36e99" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="project-content">
+                            <h3>Handwritten Digit Classifier</h3>
+                            <p>A machine learning project that classifies handwritten digits using a convolutional neural network (CNN). The project was created to understand the fundamentals of computer vision and deep learning.</p>
+                            <p><a href="https://github.com/rkarmaka98/Handwritten-digit-classifier">View on GitHub</a></p>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <video controls class="project-video" style="width: 100%;height: auto;">
+                            <source src="https://github.com/user-attachments/assets/75b7386b-3335-4236-9e52-53ff4f92a3cb" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="project-content">
+                            <h3>Facial Emotional Sentiment Detection</h3>
+                            <p>This project is a real-time emotion detection system that uses Support Vector Classifier (SVC) to classify human emotions based on facial landmarks. The system captures live video using a webcam, detects faces using `dlib`, extracts geometric features, and predicts the user's emotion. The results are displayed in real-time on a web interface.</p>
+                            <p><a href="https://github.com/rkarmaka98/Emotion-Detection">View on GitHub</a></p>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <video controls class="project-video" style="width: 100%;height: auto;">
+                            <source src="https://github.com/user-attachments/assets/7146335e-90e0-40cf-b844-18543974753b" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="project-content">
+                            <h3>Self Driving Simulation</h3>
+                            <p>The Self-Driving Car Simulation project aims to create an environment where an agent learns to drive a car autonomously. The agent receives visual inputs from the environment, processes them through a Deep Q-Network (DQN), and learns optimal actions to maximize its reward, which is primarily based on avoiding collisions and successfully navigating through lanes.</p>
+                            <p><a href="https://github.com/rkarmaka98/SelfDrivingCarSimulation">View on GitHub</a></p>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <video controls class="project-video" style="width: 100%;height: auto;">
+                            <source src="https://github.com/user-attachments/assets/e9d36e4b-4375-4d3a-825e-e45968fc9e78" type="video/mp4">
+                            Your browser does not support the video tag.https://github.com/rkarmaka98/rkarmaka98.github.io/blob/main/index.html
+                        </video>
+                        <div class="project-content">
+                            <h3>Superpoint using Realsense</h3>
+                            <p>SuperPoint is a state-of-the-art keypoint detection and descriptor extraction algorithm. It uses a deep convolutional neural network to simultaneously detect keypoints and compute their descriptors. The algorithm is designed to be robust to changes in lighting, scale, and viewpoint, making it suitable for real-world applications such as SLAM, structure-from-motion, and augmented reality.</p>
+                            <p><a href="https://github.com/rkarmaka98/superpoint_realsense">View on GitHub</a></p>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <video controls class="project-video" style="width: 100%;height: auto;">
+                            <source src="https://github.com/user-attachments/assets/cdb636bb-9483-4683-9d57-81e889b66bae" type="video/mp4">
+                            Your browser does not support the video tag.https://github.com/rkarmaka98/rkarmaka98.github.io/blob/main/index.html
+                        </video>
+                        <div class="project-content">
+                            <h3>SuperGlue using Realsense</h3>
+                            <p>SuperGlue is a deep learning-based feature matching algorithm designed for accurate and robust keypoint matching between images. It builds upon SuperPoint, a self-supervised keypoint detector, and employs a graph neural network (GNN) to establish correspondences by considering spatial relationships and contextual information between keypoints.</p>
+                            <p><a href="https://github.com/rkarmaka98/SuperGlue_realsense">View on GitHub</a></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="articles" class="section-container">
+                <h2>Favourite Articles & Blogs</h2>
+                <ul>
+                    <li><a href="https://sebastianraschka.com/blog/2023/self-attention-from-scratch.html">Self-Attention from Scratch</a></li>
+                    <li><a href="https://poloclub.github.io/cnn-explainer/">CNN Visualizer</a></li>
+                    <li><a href="https://poloclub.github.io/transformer-explainer/">Transformer Explainer</a></li>
+                    <li><a href="https://poloclub.github.io/ganlab/">GAN Visualizer</a></li>
+                    <li><a href="https://poloclub.github.io/diffusion-explainer/">Diffusion Explainer</a></li>
+                    <li><a href="https://poloclub.github.io/wizmap/">Embedding Mapping</a></li>
+                </ul>
+            </section>
+        </div>
+    </div> <!-- End main-content-wrapper -->
+
     <canvas id="networkCanvas"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="scripts.js"></script>
 </body>
 </html>

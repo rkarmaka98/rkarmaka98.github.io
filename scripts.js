@@ -1,139 +1,179 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Theme Toggle --- 
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // Function to apply theme based on preference
+    const applyTheme = (theme) => {
+        if (theme === 'dark') {
+            body.classList.add('dark-mode');
+        } else {
+            body.classList.remove('dark-mode');
+        }
+        // Update button content via CSS variable change
+        // CSS already handles the icon switch using ::before and var(--theme-toggle-icon)
+    };
+
+    // Check for saved theme preference or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    let currentTheme = 'light'; // Default to light
+    if (savedTheme) {
+        currentTheme = savedTheme;
+    } else if (prefersDark) {
+        currentTheme = 'dark';
+    }
+
+    applyTheme(currentTheme);
+
+    // Toggle theme on button click
+    themeToggle.addEventListener('click', () => {
+        currentTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
+        applyTheme(currentTheme);
+        localStorage.setItem('theme', currentTheme);
+    });
+
+    // --- Initialize Typed.js --- 
+    const typedStringsElement = document.getElementById('typed-strings');
+    const typedLastNameElement = document.getElementById('typed-lastname');
+
+    // Typing effect for the last name
+    if (typedLastNameElement) {
+        const lastNameTyped = new Typed('#typed-lastname', {
+            strings: ['Karmakar'], // Only type the last name
+            typeSpeed: 100, // Adjust speed as desired
+            backSpeed: 50, // Speed of deleting
+            backDelay: 3000, // Pause for 3 seconds before re-typing
+            loop: true, // Loop the animation
+            showCursor: true,
+            cursorChar: '|',
+            autoInsertCss: true // Ensure cursor styles are injected
+        });
+    }
+
+    // --- Scroll Animations --- 
+    // Target only the top-level elements for entrance animation
+    const animatedElements = document.querySelectorAll('section'); // Animate sections only
+
+    const observerOptions = {
+        root: null, // Use the viewport as the root
+        rootMargin: '0px',
+        threshold: 0.1 // Trigger when 10% of the element is visible
+    };
+
+    const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target); // Stop observing once visible
+            }
+        });
+    };
+
+    const scrollObserver = new IntersectionObserver(observerCallback, observerOptions);
+
+    animatedElements.forEach(el => {
+        scrollObserver.observe(el);
+    });
+
+    // --- Existing Network Canvas Code --- (Keep this)
     const canvas = document.getElementById('networkCanvas');
     const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const nodes = [];
-    const nodeCount = 30;
-    const maxDistance = 150;
-    let impulseColor = 'rgba(50, 50, 50, 0.5)';
-    const sections = document.querySelectorAll('section');
+    let nodes = [];
+    let links = [];
+    const maxNodes = 50;
+    const maxDist = 150;
+    const interactionRadius = 200;
 
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }
 
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+    class Node {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            this.vx = Math.random() * 0.5 - 0.25; // Slower speed
+            this.vy = Math.random() * 0.5 - 0.25; // Slower speed
+            this.radius = Math.random() * 2 + 1; // Smaller nodes
+        }
 
-    const options = {
-        threshold: 0.1
-    };
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
 
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, options);
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        }
 
-    sections.forEach(section => {
-        observer.observe(section);
-    });
-
-    for (let i = 0; i < nodeCount; i++) {
-        nodes.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            radius: Math.random() * 3 + 1,
-            dx: (Math.random() - 0.5) * 2,
-            dy: (Math.random() - 0.5) * 2,
-            impulse: 0,
-            alpha: 1
-        });
-    }
-
-    function drawNodes() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        nodes.forEach(node => {
+        draw() {
             ctx.beginPath();
-            ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(169, 169, 169, ${node.alpha})`;
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--link-color');
             ctx.fill();
-            ctx.closePath();
-        });
+        }
     }
 
-    function drawEdges() {
+    function init() {
+        resizeCanvas();
+        nodes = [];
+        for (let i = 0; i < maxNodes; i++) {
+            nodes.push(new Node(Math.random() * canvas.width, Math.random() * canvas.height));
+        }
+        requestAnimationFrame(animate);
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        const linkColor = getComputedStyle(document.documentElement).getPropertyValue('--link-color');
+        const nodeColor = getComputedStyle(document.documentElement).getPropertyValue('--text-color'); // Use text color for nodes perhaps?
+
+        // Update and draw nodes
+        nodes.forEach(node => {
+            node.update();
+            // Set node color based on theme
+            ctx.fillStyle = nodeColor; 
+            node.draw();
+        });
+
+        // Create and draw links
+        links = [];
         for (let i = 0; i < nodes.length; i++) {
             for (let j = i + 1; j < nodes.length; j++) {
                 const dx = nodes[i].x - nodes[j].x;
                 const dy = nodes[i].y - nodes[j].y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
+                const dist = Math.sqrt(dx * dx + dy * dy);
 
-                if (distance < maxDistance) {
-                    ctx.beginPath();
-                    ctx.moveTo(nodes[i].x, nodes[i].y);
-                    ctx.lineTo(nodes[j].x, nodes[j].y);
-                    ctx.strokeStyle = `rgba(100, 100, 100, ${1 - distance / maxDistance})`;
-                    ctx.lineWidth = 0.5;
-                    ctx.stroke();
-                    ctx.closePath();
-                }
-
-                if (nodes[i].impulse > 0) {
-                    const impulseX = nodes[i].x + (nodes[j].x - nodes[i].x) * nodes[i].impulse;
-                    const impulseY = nodes[i].y + (nodes[j].y - nodes[i].y) * nodes[i].impulse;
-                    ctx.beginPath();
-                    ctx.arc(impulseX, impulseY, 3, 0, Math.PI * 2);
-                    ctx.fillStyle = impulseColor;
-                    ctx.fill();
-                    ctx.closePath();
-
-                    if (nodes[j].impulse > 0) {
-                        const impulseX2 = nodes[j].x + (nodes[i].x - nodes[j].x) * nodes[j].impulse;
-                        const impulseY2 = nodes[j].y + (nodes[i].y - nodes[j].y) * nodes[j].impulse;
-                        ctx.beginPath();
-                        ctx.moveTo(impulseX, impulseY);
-                        ctx.lineTo(impulseX2, impulseY2);
-                        ctx.strokeStyle = impulseColor;
-                        ctx.lineWidth = 0.5;
-                        ctx.stroke();
-                        ctx.closePath();
-                    }
+                if (dist < maxDist) {
+                    links.push({ n1: nodes[i], n2: nodes[j], opacity: 1 - dist / maxDist });
                 }
             }
         }
-    }
 
-    function updateNodes() {
-        nodes.forEach(node => {
-            node.x += node.dx;
-            node.y += node.dy;
-
-            if (node.x < 0 || node.x > canvas.width) node.dx *= -1;
-            if (node.y < 0 || node.y > canvas.height) node.dy *= -1;
-
-            node.impulse += 0.005;
-            if (node.impulse > 1) {
-                node.impulse = 0;
-                node.alpha = Math.random();
-            }
-        });
-    }
-
-    function drawTransitionLines() {
-        nodes.forEach(node => {
+        links.forEach(link => {
             ctx.beginPath();
-            ctx.arc(node.x, node.y, node.radius * 2, 0, Math.PI * 2);
-            ctx.strokeStyle = 'rgba(100, 150, 200, 0.3)';
-            ctx.lineWidth = 0.3;
+            ctx.moveTo(link.n1.x, link.n1.y);
+            ctx.lineTo(link.n2.x, link.n2.y);
+            ctx.strokeStyle = linkColor;
+            ctx.globalAlpha = link.opacity * 0.5; // Make links more subtle
+            ctx.lineWidth = 0.5; // Thinner lines
             ctx.stroke();
-            ctx.closePath();
+            ctx.globalAlpha = 1.0; // Reset global alpha
         });
-    }
 
-    function animate() {
-        drawNodes();
-        drawEdges();
-        drawTransitionLines();
-        updateNodes();
         requestAnimationFrame(animate);
     }
+    
+    // Mouse interaction effect (optional, can be added)
+    // let mouse = { x: undefined, y: undefined };
+    // window.addEventListener('mousemove', (event) => {
+    //     mouse.x = event.clientX;
+    //     mouse.y = event.clientY;
+    // });
 
-    animate();
+    window.addEventListener('resize', resizeCanvas);
+    init();
 });
