@@ -387,18 +387,18 @@ p {
 }
 
 .main-sections-container {
-    /* Add padding/margin if needed */
-
     /* Give this container a background so content below hero scrolls over parallax */
-    background-color: var(--bg-color);
-    /* Add padding if site borders are active and body has padding */
-    /* padding: 20px 0; */ 
+    background-color: transparent;
+    position: relative;
+    z-index: 3;
 }
-
 
 /* --- General Section Styling --- */
 .section-container {
-    padding: 40px 0; /* Adjust padding */
+    padding: 40px 0;
+    position: relative;
+    z-index: 3;
+    background-color: rgba(31, 31, 31, 0.7); /* Semi-transparent background */
 }
 
 .text-container {
@@ -435,13 +435,14 @@ section:not(#articles):not(#projects) {
 
 .projects {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-    gap: 2.5rem; /* Slightly larger gap */
-    /* Card styling will be redone later */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    position: relative;
+    z-index: 3;
 }
 
 .project {
-    background-color: var(--card-bg);
+    background-color: rgba(43, 43, 43, 0.8); /* Semi-transparent background */
     border-radius: 12px;
     border: 1px solid var(--border-color);
     overflow: hidden;
@@ -450,6 +451,7 @@ section:not(#articles):not(#projects) {
     display: flex;
     flex-direction: column;
     position: relative;
+    z-index: 3;
 }
 
 .project::before {
@@ -571,20 +573,18 @@ section:not(#articles):not(#projects) {
     /* Reset specific background/padding if needed */
 }
 
-#articles ul { /* Rename section id for clarity */
-    list-style: none; /* Remove default bullets */
+#articles ul {
+    list-style: none;
     padding: 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
-    /* Remove opacity/transform related to scroll animation */
-    /* transition: opacity 0.6s ease-out, transform 0.6s ease-out; */ 
-    /* opacity: 0; */
-    /* transform: translateY(30px); */ 
+    position: relative;
+    z-index: 3;
 }
 
 #articles li {
-    background: var(--article-bg);
+    background: rgba(43, 43, 43, 0.8); /* Semi-transparent background */
     padding: 1.5rem;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
