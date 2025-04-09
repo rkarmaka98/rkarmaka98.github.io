@@ -395,14 +395,25 @@ p {
 
 /* --- General Section Styling --- */
 .section-container {
-    padding: 40px 0;
+    padding: 40px 30px;
     position: relative;
     z-index: 3;
-    background-color: rgba(31, 31, 31, 0.7); /* Semi-transparent background */
+    background-color: rgba(31, 31, 31, 0.7);
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1400px;
 }
 
 .text-container {
-    /* Specific styles for text-heavy sections if needed */
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
 }
 
 section h2 {
@@ -709,7 +720,7 @@ canvas#networkCanvas {
         right: 0;
     }
     section {
-        /* Adjust section padding? */
+        padding: 0 20px;
     }
     .projects {
         grid-template-columns: 1fr; /* Stack projects on smaller screens */
@@ -740,6 +751,12 @@ canvas#networkCanvas {
     .hero-content .btn-default[download] {
         width: 100%;
         max-width: 200px;
+    }
+    .text-container {
+        padding: 0 20px;
+    }
+    .section-container {
+        padding: 30px 20px;
     }
 }
 
