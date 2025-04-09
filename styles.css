@@ -595,7 +595,7 @@ section:not(#articles):not(#projects) {
 }
 
 #articles li {
-    background: rgba(43, 43, 43, 0.8); /* Semi-transparent background */
+    background: rgba(43, 43, 43, 0.8);
     padding: 1.5rem;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
@@ -675,6 +675,7 @@ section:not(#articles):not(#projects) {
     position: relative;
     display: inline-block;
     letter-spacing: 0.01em;
+    z-index: 2;
 }
 
 #articles a:hover {
@@ -694,6 +695,7 @@ section:not(#articles):not(#projects) {
         var(--link-color),
         var(--link-hover-color));
     transition: width 0.4s ease;
+    z-index: 2;
 }
 
 #articles a:hover::after {
