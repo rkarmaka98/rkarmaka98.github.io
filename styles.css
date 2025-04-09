@@ -301,13 +301,30 @@ p {
     border: 1px solid var(--hero-text-color);
     padding: 10px 20px;
     margin: 5px;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .hero-content .btn-default:hover {
     background-color: var(--hero-text-color);
-    color: var(--bg-color); /* Or a dark color */
+    color: var(--bg-color);
     text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.hero-content .btn-default[download] {
+    background-color: var(--link-color);
+    border-color: var(--link-color);
+    color: var(--bg-color);
+}
+
+.hero-content .btn-default[download]:hover {
+    background-color: var(--link-hover-color);
+    border-color: var(--link-hover-color);
+    color: var(--bg-color);
+    box-shadow: 0 5px 15px rgba(100, 181, 246, 0.3);
 }
 
 /* Typed cursor */
