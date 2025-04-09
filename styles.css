@@ -136,24 +136,55 @@ a:focus {
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--heading-font); /* Roboto */
+    font-family: var(--heading-font);
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.2;
     color: var(--heading-color);
     transition: color 0.3s ease;
+    letter-spacing: -0.02em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
-h1 { font-size: 70px; margin: 0.67em 0; } /* Large hero H1 from template */
-h2 { font-size: 30px; margin: 20px 0; }
-h3 { font-size: 20px; margin: 20px 0; }
-h4, h5 { font-size: 11px; margin: 10px 0; }
-h6 { font-size: 10px; margin: 10px 0; }
+
+h1 { 
+    font-size: 70px; 
+    margin: 0.67em 0;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+h2 { 
+    font-size: 30px; 
+    margin: 20px 0;
+    font-weight: 700;
+}
+
+h3 { 
+    font-size: 20px; 
+    margin: 20px 0;
+    font-weight: 600;
+}
+
+h4, h5 { 
+    font-size: 11px; 
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+h6 { 
+    font-size: 10px; 
+    margin: 10px 0;
+    font-weight: 500;
+}
 
 p {
-    margin: 0 0 15px; /* Template spacing */
-    font-weight: 300;
-    letter-spacing: .8px;
-    line-height: 25px;
+    margin: 0 0 15px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.7;
     transition: color 0.3s ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
@@ -278,17 +309,23 @@ p {
 }
 
 .hero-content h1 {
-    font-family: var(--heading-font); /* Roboto */
-    font-weight: 900; /* Template weight */
+    font-family: var(--heading-font);
+    font-weight: 900;
     color: var(--hero-text-color);
-    font-size: 70px; /* Template size */
+    font-size: 70px;
     margin-bottom: 20px;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .hero-content p {
     color: var(--hero-text-color);
-    font-size: 14px;
-    letter-spacing: 1px;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+    font-weight: 400;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 .hero-content a {
@@ -474,11 +511,12 @@ section:not(#articles):not(#projects) {
 }
 
 .project h3 {
-    font-size: 1.1rem;
-    font-weight: 700;
+    font-size: 1.2rem;
+    font-weight: 600;
     color: var(--heading-color);
     margin-bottom: 0.75rem;
     transition: all 0.4s ease;
+    letter-spacing: -0.01em;
 }
 
 .project:hover h3 {
@@ -487,10 +525,11 @@ section:not(#articles):not(#projects) {
 }
 
 .project p {
-    font-size: 0.95rem;
+    font-size: 1rem;
     margin-bottom: 1rem;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.6;
+    letter-spacing: 0.01em;
     flex-grow: 1;
     transition: all 0.4s ease;
 }
@@ -619,11 +658,12 @@ section:not(#articles):not(#projects) {
 
 #articles a {
     color: var(--heading-color);
-    font-weight: 400;
+    font-weight: 500;
     text-decoration: none;
     transition: all 0.4s ease;
     position: relative;
     display: inline-block;
+    letter-spacing: 0.01em;
 }
 
 #articles a:hover {
@@ -685,12 +725,11 @@ canvas#networkCanvas {
     }
     .hero-content h1 {
         font-size: 40px;
+        letter-spacing: -0.02em;
     }
     .hero-content p {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
+        font-size: 15px;
+        line-height: 1.5;
     }
     .hero-content .btn-default {
         width: 100%;
